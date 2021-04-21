@@ -16,6 +16,17 @@ public class testingCalculator  {
     }
 
     @Test
+    public void testMulTrue() {
+        double actualresult= pow(5, 6);
+        double expectedresult= 15625;
+        Assert.assertTrue(checkEquality(actualresult,expectedresult));
+
+    }
+    public boolean checkEquality(double i, double j) {
+        return i==j;
+    }
+
+    @Test
     public void testDiv() {
         double actualresult= div(9,2);
         Assert.assertEquals(actualresult, 4.5);
