@@ -12,7 +12,7 @@ public class testingChrome {
 
     public void TestingYoutubeButton() throws InterruptedException {
 
-        System.setProperty( "webdriver.chrome.driver","C:\\Users\\Milena\\Desktop\\Milena\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty( "webdriver.chrome.driver","C:\\Users\\Milena\\IdeaProjects\\MavennProject\\src\\main\\resources\\chromedriver.exe");
 
         WebDriver driver= new ChromeDriver();
         driver.manage().window().maximize();
