@@ -1,10 +1,13 @@
 package testProjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import jdk.jfr.Timespan;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class testingChrome {
 
@@ -21,6 +24,9 @@ public class testingChrome {
         driver.findElement(By.id("buttons")).click();
         Thread.sleep(2000);
         driver.quit();
+
+
+
 
 
 
