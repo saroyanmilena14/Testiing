@@ -2,8 +2,6 @@ package testProjects;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,47 +18,36 @@ public class SixpmTest {
         driver.manage().window().maximize();
         driver.get("https://www.6pm.com");
         Thread.sleep(10000);
-        WebElement inputField= driver.findElement(By.id("searchAll"));
+        WebElement inputField = driver.findElement(By.id("searchAll"));
         inputField.sendKeys("dresses" + Keys.ENTER);
         List<WebElement> allProducts = driver.findElements(By.cssSelector("#searchPage article"));
-        WebElement randomElem= allProducts.get(new Random().nextInt(allProducts.size()));
-        String randomProductBrand= randomElem.findElement(By.cssSelector("dd[itemprop=brand]")).getText();
-        String randomProductName= randomElem.findElement(By.cssSelector("dd[itemprop=name]")).getText();
-        String randomProductPrice= randomElem.findElement(By.cssSelector("dd>span[itemprop=price]")).getText();
+        WebElement randomElem = allProducts.get(new Random().nextInt(allProducts.size()));
+        String randomProductBrand = randomElem.findElement(By.cssSelector("#searchPage [itemprop=brand]")).getText();
+        String randomProductName = randomElem.findElement(By.cssSelector("dd[itemprop=name]")).getText();
+        String randomProductPrice = randomElem.findElement(By.cssSelector("dd>span[itemprop=price]")).getText();
 
-        System.out.println("Randomly picked product brand is" + " " +randomProductBrand+ ",name is "+ " "+ randomProductName+" "+"and price is"+ " " + randomProductPrice);
+        System.out.println("Randomly picked product brand is" + " " + randomProductBrand + ",name is " + " " + randomProductName + " " + "and price is" + " " + randomProductPrice);
         Thread.sleep(5000);
         randomElem.click();
         Thread.sleep(10000);
-        String productBrandFromDetailsPage= driver.findElement(By.cssSelector("#overview div span[itemprop=name]")).getText();
-        String productNameFromDetailsPage= driver.findElement(By.cssSelector("#overview div span.KN-z" )).getText();
-        String productPriceFromDetailsPage="";
-        List<WebElement> productFeattures= driver.findElements(By.cssSelector("#productRecap div span[aria-hidden=true]"));
-        for(WebElement elem: productFeattures) {
-            productPriceFromDetailsPage= elem.getText();
-            System.out.println("Price:"+productPriceFromDetailsPage);
-        }
+        String productBrandFromDetailsPage = driver.findElement(By.cssSelector("#overview div span[itemprop=name]")).getText();
+        String productNameFromDetailsPage = driver.findElement(By.cssSelector("#overview div span:nth-child(2)")).getText();
+        List<WebElement> productPrices = driver.findElements(By.cssSelector("#productRecap div span[aria-hidden=true]"));
+        WebElement elem = productPrices.get(1);
+        String productPriceFromDetailsPage = elem.getText();
+        System.out.println("Price:" + productPriceFromDetailsPage);
 
 
-      Thread.sleep(2000);
-        System.out.println("Brand:"+productBrandFromDetailsPage);
-        System.out.println("Name:"+productNameFromDetailsPage);
+        System.out.println("Brand:" + productBrandFromDetailsPage);
+        System.out.println("Name:" + productNameFromDetailsPage);
 
 
-    Assert.assertEquals(productBrandFromDetailsPage,randomProductBrand, "The Brand taken from Details page doesn't match with the Brand of randomly clicked product");
-    Assert.assertEquals(productNameFromDetailsPage,randomProductName, "The Name taken from Details page doesn't match with the Name of randomly clicked product ");
-    Assert.assertEquals(productPriceFromDetailsPage,randomProductPrice, "The Price taken from Details page doesn't match with the Price of randomly clicked product");
+        Assert.assertEquals(productBrandFromDetailsPage, randomProductBrand, "The Brand taken from Details page doesn't match with the Brand of randomly clicked product");
+        Assert.assertEquals(productNameFromDetailsPage, randomProductName, "The Name taken from Details page doesn't match with the Name of randomly clicked product ");
+        Assert.assertEquals(productPriceFromDetailsPage, randomProductPrice, "The Price taken from Details page doesn't match with the Price of randomly clicked product");
 
 
-
-        Thread.sleep(7000);
         driver.quit();
-
-
-
-
-
-
 
     }
 }
