@@ -36,6 +36,7 @@ public class FiltringProductsInSixPm {
         for (WebElement elem : pricesSunglasses) {
             String price = elem.getText();
             String priceWithout$ = price.substring(1);
+            System.out.println(Double.parseDouble(priceWithout$));
             Assert.assertTrue(Double.parseDouble(priceWithout$) <= 25.00, "Price should be under $25.00");
         }
         driver.quit();
